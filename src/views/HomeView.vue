@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Recommendations from '../components/Recommendations.vue';
+import Recommendations from '../components/RecommendationsContainer.vue';
 </script>
 
 <template>
