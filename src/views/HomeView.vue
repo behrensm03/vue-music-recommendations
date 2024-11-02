@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import HelloWorld from '@/components/HelloWorld.vue';
-import TheWelcome from '../components/TheWelcome.vue'
+import Recommendations from '../components/Recommendations.vue';
 </script>
 
 <template>
   <main>
-    <HelloWorld />
+    <Recommendations />
   </main>
 </template>
