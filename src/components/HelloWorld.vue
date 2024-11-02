@@ -1,17 +1,18 @@
 <script setup lang="ts">
-defineProps<{
-  msg: string
-}>()
+import {useFetch} from '../composables';
+import { fetchItems, type Item } from './util';
+const {data, loading} = useFetch<Item[]>(fetchItems);
 </script>
 
 <template>
   <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
-    <h3>
+    <h1 class="green">{{ data }}</h1>
+    <h2 class="green">{{ loading }}</h2>
+    <!-- <h3>
       You’ve successfully created a project with
       <a href="https://vite.dev/" target="_blank" rel="noopener">Vite</a> +
       <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>. What's next?
-    </h3>
+    </h3> -->
   </div>
 </template>
 
