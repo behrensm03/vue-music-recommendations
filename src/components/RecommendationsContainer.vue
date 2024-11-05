@@ -3,12 +3,11 @@ import { Block } from './ui';
 import SearchContainer from './SearchContainer.vue';
 import ArtistSelections from './ArtistSelections.vue';
 import ArtistRecommendations from './ArtistRecommendations.vue';
-import { useArtistStore } from '../stores/artists';
+import { useArtistStore } from '../stores';
 
 const {select} = useArtistStore();
 
-// TODO: handle events from search select and update the pinia store
-const selectArtist = (id: string) => {
+const selectArtist = async (id: string) => {
   select(id);
 }
 </script>
@@ -23,7 +22,7 @@ const selectArtist = (id: string) => {
       <div :class="$style.layoutContainer">
         <SearchContainer :class="$style.search" @select="selectArtist" />
         <div :class="[$style.selectRecommend, $style.innerLayout]">
-          <ArtistSelections :class="$style.grow" />
+          <ArtistSelections />
           <ArtistRecommendations :class="$style.grow" />
         </div>
       </div>
@@ -64,7 +63,9 @@ const selectArtist = (id: string) => {
 .grow {
   flex: 1;
   min-height: 0;
-  overflow: scroll;
   width: 100%;
+}
+.one {
+  background-color: red;
 }
 </style>

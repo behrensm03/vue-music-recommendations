@@ -5,14 +5,24 @@ export interface Artist {
   name: string;
 }
 
-const URL = "https://music-recommendations-lake-five.vercel.app/"
+export interface Recommendation {
+  id: string;
+  name: string;
+  similarity: number;
+}
 
-// export const fetchItems = async () => {
-//   const resp = await axios.get<Item[]>(URL+"items");
-//   return resp.data;
-// }
+const URL = "https://music-recommendations-lake-five.vercel.app/"
 
 export const fetchArtists = async () => {
   const resp = await axios.get<Artist[]>(URL+"artists")
+  return resp.data;
+}
+
+export const fetchRecommendations = async (id: string) => {
+  const resp = await axios.get<Recommendation[]>(URL+"recommend", {
+    params: {
+      id
+    }
+  });
   return resp.data;
 }
