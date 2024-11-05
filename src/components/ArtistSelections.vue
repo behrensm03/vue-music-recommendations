@@ -9,7 +9,7 @@ const {removeSelection, clear} = useArtistStore();
 </script>
 
 <template>
-  <div>
+  <div :class="$style.container">
     <SelectionBubble
       v-for="artist in selections"
       :artist="artist"
@@ -27,5 +27,13 @@ const {removeSelection, clear} = useArtistStore();
 }
 .button {
   margin-top: 1rem;
+}
+.container {
+  text-align: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 </style>

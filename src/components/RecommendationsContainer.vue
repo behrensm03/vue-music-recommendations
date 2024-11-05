@@ -23,8 +23,8 @@ const selectArtist = (id: string) => {
       <div :class="$style.layoutContainer">
         <SearchContainer :class="$style.search" @select="selectArtist" />
         <div :class="[$style.selectRecommend, $style.innerLayout]">
-          <ArtistSelections :class="[$style.grow,]" />
-          <ArtistRecommendations :class="[$style.grow,]" />
+          <ArtistSelections :class="$style.grow" />
+          <ArtistRecommendations :class="$style.grow" />
         </div>
       </div>
     </template>
@@ -57,15 +57,14 @@ const selectArtist = (id: string) => {
 .innerLayout {
   display: flex;
   flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
 }
 .grow {
   flex: 1;
   min-height: 0;
-}
-.one {
-  background-color: red;
-}
-.two {
-  background-color: blue;
+  overflow: scroll;
+  width: 100%;
 }
 </style>
