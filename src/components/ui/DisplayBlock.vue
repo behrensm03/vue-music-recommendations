@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { Alignment } from './util';
-defineProps<{
-  align: Alignment,
-}>();
+// defineProps<{
+  // align: Alignment,
+// }>();
 // TODO: dynamic alignment based on prop
 </script>
 
@@ -21,6 +20,7 @@ defineProps<{
 .container {
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 .content {
   flex-grow: 1;
@@ -31,5 +31,6 @@ defineProps<{
 .title {
   font-size: x-large;
   text-align: center;
+  padding-bottom: 1rem;
 }
 </style>

@@ -10,5 +10,6 @@ import { RouterView } from 'vue-router'
 .router {
   height: 100%;
   width: 100%;
+  color: hsla(160, 100%, 37%, 1);
 }
 </style>

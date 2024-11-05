@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import Recommendations from '../components/RecommendationsContainer.vue';
+import RecommendationsContainer from '../components/RecommendationsContainer.vue';
 </script>
 
 <template>
   <main>
-    <Recommendations />
+    <RecommendationsContainer />
   </main>
 </template>

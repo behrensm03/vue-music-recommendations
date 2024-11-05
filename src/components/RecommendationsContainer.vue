@@ -1,17 +1,31 @@
 <script setup lang="ts">
-// import {useFetch} from '../composables';
-// import { fetchItems, type Item } from './util';
-import { Alignment, Block } from './ui';
-// const {data, loading} = useFetch<Item[]>(fetchItems);
+import { Block } from './ui';
+import SearchContainer from './SearchContainer.vue';
+import ArtistSelections from './ArtistSelections.vue';
+import ArtistRecommendations from './ArtistRecommendations.vue';
+import { useArtistStore } from '../stores/artists';
+
+const {select} = useArtistStore();
+
+// TODO: handle events from search select and update the pinia store
+const selectArtist = (id: string) => {
+  select(id);
+}
 </script>
 
 <template>
-  <Block :align="Alignment.CENTER" :class="$style.container">
-    <template #title><h1>Title</h1></template>
+  <Block :class="$style.container">
+    <template #title>
+      <h2>Title</h2>
+      <h6>Select some artists you like to get recommendations for new artists.</h6>
+    </template>
     <template #content>
       <div :class="$style.layoutContainer">
-        <div :class="$style.grow">search/select here</div>
-        <div :class="$style.grow">results here</div>
+        <SearchContainer :class="$style.search" @select="selectArtist" />
+        <div :class="[$style.selectRecommend, $style.innerLayout]">
+          <ArtistSelections :class="[$style.grow,]" />
+          <ArtistRecommendations :class="[$style.grow,]" />
+        </div>
       </div>
     </template>
   </Block>
@@ -19,18 +33,39 @@ import { Alignment, Block } from './ui';
 
 <style module>
 .container {
-  height: 100%;
-  width: 100%;
-  color: hsla(160, 100%, 37%, 1);
+  padding: 2rem;
 }
 .layoutContainer {
-  height: 100%;
-  width: 100%;
   display: flex;
+  flex: 1;
+  height: 100%;
+}
+.search {
+  flex: 1;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.selectRecommend {
+  flex: 2;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.innerLayout {
+  display: flex;
+  flex-direction: column;
 }
 .grow {
-  flex-grow: 1;
+  flex: 1;
   min-height: 0;
-  text-align: center;
+}
+.one {
+  background-color: red;
+}
+.two {
+  background-color: blue;
 }
 </style>
