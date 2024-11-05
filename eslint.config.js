@@ -22,4 +22,15 @@ export default [
     files: ['src/**/__tests__/*'],
   },
   skipFormatting,
+  {
+    rules: {
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          "argsIgnorePattern": "^_"
+        }
+      ]
+    }
+  }
 ]

@@ -3,3 +3,8 @@ export enum Alignment {
   LEFT = 1,
   RIGHT = 2,
 }
+
+export interface ListItem {
+  id: string
+  name: string
+}

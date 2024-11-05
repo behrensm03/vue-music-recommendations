@@ -1,6 +1,9 @@
 import {ref, computed, type Ref, watchEffect} from 'vue';
 
-export function useFetch<T> (fetch: () => Promise<T | undefined>) {
+export function useFetch<T> (
+  fetch: () => Promise<T | undefined>,
+  save?: (resp: T) => void,
+) {
   const data: Ref<T | undefined> = ref();
   const loading = ref(false);
   const error: Ref<unknown> = ref();
@@ -15,6 +18,9 @@ export function useFetch<T> (fetch: () => Promise<T | undefined>) {
       error.value = e;
     } finally {
       loading.value = false;
+      if (!!save && !!data.value) {
+        save(data.value);
+      }
     }
   }
 
