@@ -28,7 +28,7 @@ const isPrimary = computed(() => props.type === "primary");
   transition: 0.2s linear;
 }
 .primary {
-  background-color: hsla(160, 100%, 37%, 1);
+  background-color: var(--primary);
   color: black;
 }
 .primary:hover {

@@ -32,7 +32,7 @@ const filteredData = computed(() => !!query.value ? (data.value ?? []).filter((i
     <div v-if="loading">Loading...</div>
     <div v-else-if="error">Error</div>
     <div v-else :class="[$style.layout, {[$style.disabled]: disabled}]">
-      <input id="search" type="text" placeholder="Search" v-model="query" />
+      <input id="search" type="text" placeholder="Search" v-model="query" :class="$style.search" />
       <div :class="$style.content">
         <slot name="item" v-for="item in filteredData" :key="item.id" :item="item"></slot>
       </div>
@@ -44,11 +44,15 @@ const filteredData = computed(() => !!query.value ? (data.value ?? []).filter((i
 .container {
   height: 100%;
   width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 .layout {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
 }
 .content {
   flex: 1;
@@ -63,5 +67,21 @@ const filteredData = computed(() => !!query.value ? (data.value ?? []).filter((i
 }
 .error {
   color: red;
+}
+.search {
+  width: 100%;
+  background-color: #181818;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid var(--primary);
+  transition: 0.2s linear;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+.search:focus {
+  outline: none;
+  border-bottom: 1px solid white;
+  transition: 0.2s linear;
 }
 </style>

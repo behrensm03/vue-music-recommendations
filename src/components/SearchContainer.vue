@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { SearchList } from './ui';
-import { fetchArtists } from './util';
+import { fetchArtists } from '../util';
 import SearchResult from './SearchResult.vue';
 import { useArtistStore } from '@/stores/artists';
 import { storeToRefs } from 'pinia';
@@ -13,7 +13,7 @@ const emit = defineEmits<{
 const {setArtists} = useArtistStore();
 const {selections} = storeToRefs(useArtistStore());
 
-const MAX_SELECTIONS = 1;
+const MAX_SELECTIONS = 3;
 const disabled = computed(() => selections.value.length >= MAX_SELECTIONS);
 </script>
 
@@ -31,5 +31,8 @@ const disabled = computed(() => selections.value.length >= MAX_SELECTIONS);
 <style module>
 .hidden {
   display: none;
+}
+.content {
+  height: 100%;
 }
 </style>

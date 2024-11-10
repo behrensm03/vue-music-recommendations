@@ -18,11 +18,11 @@ export const fetchArtists = async () => {
   return resp.data;
 }
 
-export const fetchRecommendations = async (id: string) => {
+export const fetchRecommendations = async (ids: string[]) => {
   const resp = await axios.get<Recommendation[]>(URL+"recommend", {
     params: {
-      id
+      ids: ids.join(",")
     }
   });
-  return resp.data;
+  return resp.data.slice(0, Math.min(5, resp.data.length));
 }
