@@ -2,28 +2,28 @@
 import { useFetch } from '../composables';
 import { useArtistStore } from '../stores';
 import { storeToRefs } from 'pinia';
-import { fetchRecommendations, type Recommendation } from './util';
+import { fetchRecommendations, type Recommendation } from '../util';
 import {computed} from 'vue';
 import { Block } from './ui';
 
 const {selections} = storeToRefs(useArtistStore());
-const id = computed<string | undefined>(() => selections.value[0]?.id);
+const ids = computed<string[] | undefined>(() => selections.value.map((selection) => selection.id));
 const {data, loading, error} = useFetch<Recommendation[]>(() => {
-  if (!id.value) {
+  if (!ids.value || ids.value.length === 0) {
     return Promise.resolve([]);
   }
 
-  return fetchRecommendations(id.value);
+  return fetchRecommendations(ids.value);
 });
 
-const filteredRecommendations = computed(() => (data.value ?? []).filter((recommendation) => recommendation.id !== id.value))
+const filteredRecommendations = computed(() => (data.value ?? []));
 // TODO: loading bar
 </script>
 
 <template>
   <div>
     <div v-if="loading">Loading...</div>
-    <div v-else-if="error">Error</div>
+    <div v-else-if="error" :class="$style.error">Error</div>
     <div v-else>
       <Block v-if="filteredRecommendations.length > 0">
         <template #title>
@@ -36,3 +36,9 @@ const filteredRecommendations = computed(() => (data.value ?? []).filter((recomm
     </div>
   </div>
 </template>
+
+<style module>
+.error {
+  color: red;
+}
+</style>

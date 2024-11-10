@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { Artist } from './util';
+import type { Artist } from '../util';
 
 const props = defineProps<{
   artist: Artist;

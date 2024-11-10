@@ -1,6 +1,6 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
-import type { Artist } from '../components/util';
+import type { Artist } from '../util';
 
 export const useArtistStore = defineStore('artists', () => {
   const selectedIds = ref<{[k: string]: boolean | undefined}>({});

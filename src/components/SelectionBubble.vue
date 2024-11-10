@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import type { Artist } from './util';
+import type { Artist } from '../util';
+import {ref} from 'vue';
 
 defineProps<{
   artist: Artist;
@@ -7,18 +8,21 @@ defineProps<{
 
 const emit = defineEmits<{
   (e: 'close'): void;
-}>()
+}>();
+
+const hover = ref(false);
 </script>
 
 <template>
-  <div :class="$style.bubble">
+  <div 
+    :class="$style.bubble" 
+    @click="emit('close')" 
+    @mouseenter="hover=true"
+    @mouseleave="hover=false"
+  >
     <div :class="$style.text">
-      {{ artist.name }}
+      {{ hover ? 'Remove' : artist.name }}
     </div>
-    <div :class="$style.close" @click="emit('close')">
-      x
-    </div>
-    <!-- TODO: make above an icon -->
   </div>
 </template>
 
@@ -28,23 +32,22 @@ const emit = defineEmits<{
   line-height: 2rem;
   width: 13rem;
   border-radius: 1rem;
-  background-color: hsla(160, 100%, 37%, 1);
+  background-color: var(--primary);
   color: black;
   display: flex;
+  transition: 0.3s linear;
 }
 .text {
   flex: 1;
   min-height: 0;
   padding-left: 10px;
+  padding-right: 10px;
   overflow: hidden;
 }
-.close {
-  width: 3rem;
-}
-.close:hover {
+.bubble:hover {
   background-color: gray;
   cursor: pointer;
   border-radius: 1rem;
-  /* TODO: figure this out */
+  transition: 0.3s linear;
 }
 </style>
